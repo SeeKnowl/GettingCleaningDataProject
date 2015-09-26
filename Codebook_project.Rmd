@@ -1,0 +1,155 @@
+#Background:
+
+The class project is related to the hot trends in wearable computing and the race to develop sophistcated personal health monitoring devices. 
+
+#Raw data source: 
+
+The data for this project is linked to the data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description of the experiment and the data collected is available at the site where the data was obtained: 
+
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones 
+
+#Study Design:
+
+A group of 30 volunteers within an age bracket of 19-48 years were the subjects of this experiment. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, the experimenters captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor generated signals were processed using noise filters. Accelartion signals were further split into linear acceleration gravity and angular velocity (gyro) signals. From each window, a vector of features was obtained by calculating variables from the time and frequency domain.
+
+#Raw Data description:
+
+The data sets consists of some common files for the entire experiment.
+
+features info.txt -  has the information on the experiment observations, core set of variables measured over time and frequency domains and the computed variables (statistical vaiables & angle functions) 
+features.txt 	- has the 561 features vectors list that were observed
+activity_labels.txt	- Has the dessciptive activity labels and enumerations
+
+The data set provided training and test data sets under the sub folders "train" and "test".
+
+X_train.txt, X_test.txt   - respective training and test set observations with 561 featuures vectors for each sequence of activities measured over time and for various frequencies.
+
+Y_train.txt and Y_test.txt - respective training and test set activities that the subjects performed that produced the observations in the trainin set X_train.txt file
+
+subject_train.text and subject_test.act - training and test set subjects that participated in the activities
+
+
+#Processing:
+
+We combined the training and test set observations into 3 data sets (observations collected, merged training & test set activities data sets, merged subject data sets from the training and data sets. We processed the fetaures.txt file to create the column name variable names for our observed variables. As the next step we extracted only the "mean" and "standard deviation" feature vectors, using the column names data set. We replaced the enumerated activties numerals with activity descriptive labels. Then we combined the subjects, activity sequences performed by the subjects and the corresponding observations into a single data table. As the final step, we grouped the data by subject and by activity and computed the means for each of the observation column along the grouping we established(subject & activity).
+
+
+#CODE BOOK:
+
+Tidy data we created has 180 rows (30 subjects multiplied by 6 activities) and 68 variables - each row has the mean of the 66 feature vectors we extracted. 
+
+Description of the variables Subject, activity and 66 (mean and standard deviation) variables:
+SubjectId	:	Subject id ranging from 1 to 30
+Activity	:	Activity label corresponding to 6 activities performed(WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING and LAYING)
+
+The following 33 variables are mean of the time domain signals observed.
+timeBodyAcceleration_mean_X : 
+Mean of the timeBodyAcceleration signals mean along the X direction.           
+timeBodyAcceleration_mean_Y : 
+Mean of the timeBodyAcceleration signals mean along the Y direction.                    
+timeBodyAcceleration_mean_Z : 
+Mean of the timeBodyAcceleration mean signals mean along the Z direction.                    
+timeBodyAcceleration_std_X: 
+Mean of the timeBodyAcceleration standard deviation of the  signals along the X direction.           
+timeBodyAcceleration_std_Y : 
+Mean of the timeBodyAcceleration standard deviation of the  signals along the Y direction
+timeBodyAcceleration_std_Z : 
+Mean of the timeBodyAcceleration standard deviation of the  signals along the Z direction
+timeGravityAcceleration_mean_X: 
+Mean of the timeGravity Acceleration signals mean along the X direction            
+timeGravityAcceleration_mean_Y :
+Mean of the timeGravity Acceleration signals mean along the Y direction           
+timeGravityAcceleration_mean_Z:
+Mean of the timeGravity Acceleration signals mean along the Z direction           
+timeGravityAcceleration_std_X :
+Mean of the timeGravity Acceleration standard deviation of the  signals along the X direction                       
+timeGravityAcceleration_std_Y :
+Mean of the timeGravity Acceleration standard deviation of the  signals along the Y direction 
+timeGravityAcceleration_std_Z  :
+Mean of the timeGravity Acceleration standard deviation of the  signals along the Y direction      
+timeBodyAccelerationJerk_mean_X :
+Mean of the timeGravity Acceleration Jerk (rate of change) signals mean along the X direction          
+timeBodyAccelerationJerk_mean_Y  :
+Mean of the timeGravity Acceleration Jerk (rate of change) signals mean along the Y direction       
+timeBodyAccelerationJerk_mean_Z   :
+Mean of the timeGravity Acceleration Jerk (rate of change) signals mean along the Z direction 
+timeBodyAccelerationJerk_std_X    :
+Mean of the timeGravity Acceleration Jerk (rate of change) signals standard deviation along the X direction             
+timeBodyAccelerationJerk_std_Y    :
+Mean of the timeGravity Acceleration Jerk (rate of change) signals standard deviation along the Y direction       
+timeBodyAccelerationJerk_std_Z     :
+Mean of the timeGravity Acceleration Jerk (rate of change) signals standard deviation along the Z direction       
+timeBodyGyro_mean_X :                       
+Mean of the time body Gyro (angular velocity) signals mean along the X direction          
+timeBodyGyro_mean_Y :                     
+Mean of the time body Gyro (angular velocity) signals mean along the Y direction          
+timeBodyGyro_mean_Z :                    
+Mean of the time body Gyro (angular velocity) signals mean along the Z direction          
+timeBodyGyro_std_X :                     
+Mean of the time body Gyro (angular velocity) signals standard deviation along the X direction          
+timeBodyGyro_std_Y :                        
+Mean of the time body Gyro (angular velocity) signals standard deviation along the Y direction          
+timeBodyGyro_std_Z :                     
+Mean of the time body Gyro (angular velocity) signals standard deviation along the Z direction          
+timeBodyGyroJerk_mean_X :                  
+Mean of the time body Gyro (angular velocity) Jerk (rate of change) signals mean along the X direction          
+timeBodyGyroJerk_mean_Y :                  
+Mean of the time body Gyro (angular velocity) Jerk (rate of change) signals mean along the Y direction          
+timeBodyGyroJerk_mean_Z :
+Mean of the time body Gyro (angular velocity) Jerk (rate of change) signals mean along the Z direction                        
+timeBodyGyroJerk_std_X :                   
+Mean of the time body Gyro (angular velocity) Jerk (rate of change) signals standard deviation along the X direction          
+timeBodyGyroJerk_std_Y                    
+Mean of the time body Gyro (angular velocity) Jerk (rate of change) signals standard deviation along the Y direction          timeBodyGyroJerk_std_Z                   
+Mean of the time body Gyro (angular velocity) Jerk (rate of change) signals standard deviation along the Z direction          timeBodyAccelerationMag_mean:              
+Mean of the time body acceleration signal magnitude mean 
+timeBodyAccelerationMag_std :              
+Mean of the time body acceleration signal magnitude standard deviation 
+timeGravityAccelerationMag_mean :        
+Mean of the time Gravity acceleration signal magnitude mean 
+timeGravityAccelerationMag_std :           
+Mean of the time gravity acceleration signal magnitude standard deviation
+timeBodyAccelerationJerkMag_mean :       
+Mean of the time body acceleration rate of change (Jerk) signal magnitude mean 
+timeBodyAccelerationJerkMag_std :        
+Mean of the time body acceleration rate of change (Jerk) signal magnitude standard deviations 
+timeBodyGyroMag_mean:                      
+Mean of the time body angular velocity (gyro) signal magnitude mean 
+timeBodyGyroMag_std :                       
+Mean of the time body angular velocity (gyro) signal magnitude standard deviations 
+timeBodyGyroJerkMag_mean : 
+Mean of the time body angular velocity (gyro) rate of change (Jerk) signal magnitude mean                
+timeBodyGyroJerkMag_std :                   
+Mean of the time body angular velocity (gyro) rate of change (Gyro) signal magnitude standard deviations 
+
+The next 33 variables are similar vectors measured across the frequency domain:
+
+frequencyBodyAcceleration_mean_X          
+frequencyBodyAcceleration_mean_Y         
+frequencyBodyAcceleration_mean_Z          
+frequencyBodyAcceleration_std_X           
+frequencyBodyAcceleration_std_Y          
+frequencyBodyAcceleration_std_Z           
+frequencyBodyAccelerationJerk_mean_X      
+frequencyBodyAccelerationJerk_mean_Y     
+frequencyBodyAccelerationJerk_mean_Z      
+frequencyBodyAccelerationJerk_std_X       
+frequencyBodyAccelerationJerk_std_Y      
+frequencyBodyAccelerationJerk_std_Z       
+frequencyBodyGyro_mean_X                  
+frequencyBodyGyro_mean_Y                 
+frequencyBodyGyro_mean_Z                  
+frequencyBodyGyro_std_X                   
+frequencyBodyGyro_std_Y                  
+frequencyBodyGyro_std_Z                   
+frequencyBodyAccelerationMag_mean         
+frequencyBodyAccelerationMag_std         
+frequencyBodyBodyAccelerationJerkMag_mean 
+frequencyBodyBodyAccelerationJerkMag_std  
+frequencyBodyBodyGyroMag_mean            
+frequencyBodyBodyGyroMag_std              
+frequencyBodyBodyGyroJerkMag_mean         
+frequencyBodyBodyGyroJerkMag_std         
+
