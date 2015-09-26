@@ -13,10 +13,10 @@
 ##
 library(RCurl)
 ## Step 0 - download the files
-  FileURL = "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-  DownloadDir = "./Data"
-  DataSetZip = "Dataset.zip"
-  DestFile = paste(DownloadDir, DataSetZip, sep = "/")
+  FileURL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+  DownloadDir <- "./Data"
+  DataSetZip <- "Dataset.zip"
+  DestFile <- paste(DownloadDir, DataSetZip, sep = "/")
   
 ## the setInternet2 command is needed to overcome download.file issues on the Windows machine.
   setInternet2(use = TRUE)
@@ -24,7 +24,7 @@ library(RCurl)
   
 ##  Unzip the files if we haven't already done so
   setwd(DownloadDir)
-  UnzippedDir = "./UCI HAR Dataset"
+  UnzippedDir <- "./UCI HAR Dataset"
   if (!file.exists(UnzippedDir)) { unzip(DataSetZip, exdir=".")}
 
 ## step 0 reading of all the relevant files - Training data #####
@@ -43,9 +43,9 @@ library(RCurl)
 ##    stringsAsFactors = false - as we are reading text files
 ##
     setwd("./UCI HAR Dataset") ## set the working directory to the ./data/UCI HAR Dataset for all our file reading activities below
-    TrainData = read.csv("./train/X_train.txt", sep = "", header = FALSE, stringsAsFactors = FALSE)
-    TrainDataActivity = read.csv("./train/Y_train.txt", header = FALSE, stringsAsFactors = FALSE)
-    TrainDataSubjects = read.csv("./train/subject_train.txt", header = FALSE, stringsAsFactors = FALSE)
+    TrainData <- read.csv("./train/X_train.txt", sep = "", header = FALSE, stringsAsFactors = FALSE)
+    TrainDataActivity <- read.csv("./train/Y_train.txt", header = FALSE, stringsAsFactors = FALSE)
+    TrainDataSubjects <- read.csv("./train/subject_train.txt", header = FALSE, stringsAsFactors = FALSE)
     nrow(TrainData)
     nrow(TrainDataActivity)
     nrow(TrainDataSubjects)
@@ -60,9 +60,9 @@ library(RCurl)
 ## We will repeat the steps for the TEST data as well
 ## READ THE TEST DATA FILES as we did above fore the training set
   
-    TestData = read.csv("./test/X_test.txt", sep = "", header = FALSE, stringsAsFactors = FALSE)
-    TestDataActivity = read.csv("./test/Y_test.txt", header = FALSE, stringsAsFactors = FALSE)
-    TestDataSubjects = read.csv("./test/subject_test.txt", header = FALSE, stringsAsFactors = FALSE)  
+    TestData <- read.csv("./test/X_test.txt", sep = "", header = FALSE, stringsAsFactors = FALSE)
+    TestDataActivity <- read.csv("./test/Y_test.txt", header = FALSE, stringsAsFactors = FALSE)
+    TestDataSubjects <- read.csv("./test/subject_test.txt", header = FALSE, stringsAsFactors = FALSE)  
     nrow(TestData)
     nrow(TestDataActivity)
     nrow(TestDataSubjects)
@@ -85,7 +85,7 @@ library(RCurl)
  
     SubjectsMonitored <- rbind(TrainDataSubjects, TestDataSubjects)
     ActivitySequences <- rbind(TrainDataActivity, TestDataActivity)
-    ActivityMeaasurements = rbind(TrainData, TestData)
+    ActivityMeaasurements <- rbind(TrainData, TestData)
   
 ####  STEP2  - Extracting mean and standard deviation features from the observations tables for each subject and 
 ####  each repeated activtity
@@ -125,12 +125,12 @@ library(RCurl)
 ##  STEP 3 - requires activity labels be applied instead of integers in the activity column
 ##
 ##
-    ActivitySequences[ActivitySequences == 1] = "WALKING" 
-    ActivitySequences[ActivitySequences == 2] = "WALKING_UPSTAIRS" 
-    ActivitySequences[ActivitySequences == 3] = "WALKING_DOWNSTAIRS"
-    ActivitySequences[ActivitySequences == 4] = "SITTING"
-    ActivitySequences[ActivitySequences == 5] = "STANDING"
-    ActivitySequences[ActivitySequences == 6] = "LAYING"
+    ActivitySequences[ActivitySequences == 1] <- "WALKING" 
+    ActivitySequences[ActivitySequences == 2] <- "WALKING_UPSTAIRS" 
+    ActivitySequences[ActivitySequences == 3] <-"WALKING_DOWNSTAIRS"
+    ActivitySequences[ActivitySequences == 4] <- "SITTING"
+    ActivitySequences[ActivitySequences == 5] <- "STANDING"
+    ActivitySequences[ActivitySequences == 6] <- "LAYING"
     
 ## STEP 4 of the assignment - now we apply the column names that we have processed in the Features Labels data table.
 ## we use the colnames function to do that
@@ -141,7 +141,7 @@ library(RCurl)
     colnames(SubjectsMonitored) <- c("SubjectId")
     colnames(ActivitySequences) <- c("Activity")
 ##  Now we combine the 3 data tables  - Subjects Monitored, Activity sequences measured and the Mean & SD observatoins
-    CombinedData = cbind(SubjectsMonitored, ActivitySequences, MeanStdObservations)
+    CombinedData <- cbind(SubjectsMonitored, ActivitySequences, MeanStdObservations)
 
 ### STep 5 - tidy the data set
 ###   We need to group the data by subject, by activity for each subejct and the mean for each grouping
@@ -159,6 +159,6 @@ library(RCurl)
     write.table(TidyData, "./TidyMeansData.txt", row.names = FALSE)
   
 ##  make sure we are able to read the data
-    DT = read.table("TidyMeansData.txt", header = TRUE)
+    DT <- read.table("TidyMeansData.txt", header = TRUE)
     str(DT)
   
